@@ -1,6 +1,6 @@
 # Домашнее задание по асинхронности
 
-###1. Основное задание
+### 1. Основное задание
 
 Вариант 10
 
@@ -22,9 +22,9 @@ function filter(
 <script src="https://nobasksio.github.io/async/index.js"></script>
 ```
 
-###2. Бонусное задание
+### 2. Бонусное задание
 
-#####Реализовать в отдельном файле собственную версию методов:
+##### Реализовать в отдельном файле собственную версию методов:
 
 [Смотреть на GitHub Pages реализацию](https://nobasksio.github.io/bonus.html)
 
@@ -35,7 +35,7 @@ function filter(
 <script src="https://nobasksio.github.io/bonus/promise_power.js"></script>
 ```
 
-###2. Дополнительное задание rxjs
+### 2. Дополнительное задание rxjs
 
 [Смотреть на GitHub Pages реализацию](https://nobasksio.github.io/shri-rxjs-hw)
 
