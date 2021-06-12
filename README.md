@@ -37,13 +37,9 @@ function filter(
 
 ###2. Дополнительное задание rxjs
 
-[Смотреть на GitHub Pages реализацию](https://nobasksio.github.io/shrii-rxjs-hw/bonus.html)
+[Смотреть на GitHub Pages реализацию](https://nobasksio.github.io/shri-rxjs-hw)
 
-[Исходный код](https://github.com/Nobasksio/Nobasksio.github.io/blob/master/bonus/promise_power.js)
+[Исходный код](https://github.com/Nobasksio/Nobasksio.github.io/blob/master/shri-rxjs-hw/index.html)
 
-Чтобы подключить в свой проект просто вставьте тег
-```
-<script src="https://nobasksio.github.io/bonus/promise_power.js"></script>
-```
 
 

@@ -94,7 +94,7 @@
         </div>
         <script>
           const { fromEvent, from, pipe } = rxjs;
-          const { debounceTime, last, switchMap, pairwise, filter, mergeMap, map } = rxjs.operators;
+          const { switchMap, pairwise, filter, mergeMap, map } = rxjs.operators;
           const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
             const getApiResponse = (searchString) => new Promise(resolve =>
