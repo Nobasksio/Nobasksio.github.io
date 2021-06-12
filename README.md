@@ -15,7 +15,7 @@ function filter(
 ```
 [Смотреть на GitHub Pages реализацию](https://nobasksio.github.io/)
 
-[Исходный код](https://github.com/Nobasksio/Nobasksio.github.io/blob/master/index.js)
+[Исходный код](https://github.com/Nobasksio/Nobasksio.github.io/blob/master/async/index.js)
 
 Чтобы подключить в свой проект просто вставьте тег
 ```
@@ -26,9 +26,20 @@ function filter(
 
 #####Реализовать в отдельном файле собственную версию методов:
 
-[Смотреть на GitHub Pages реализацию](https://nobasksio.github.io/)
+[Смотреть на GitHub Pages реализацию](https://nobasksio.github.io/bonus.html)
 
-[Исходный код](https://github.com/Nobasksio/Nobasksio.github.io/blob/master/promise_power.js)
+[Исходный код](https://github.com/Nobasksio/Nobasksio.github.io/blob/master/bonus/promise_power.js)
+
+Чтобы подключить в свой проект просто вставьте тег
+```
+<script src="https://nobasksio.github.io/bonus/promise_power.js"></script>
+```
+
+###2. Дополнительное задание rxjs
+
+[Смотреть на GitHub Pages реализацию](https://nobasksio.github.io/shrii-rxjs-hw/bonus.html)
+
+[Исходный код](https://github.com/Nobasksio/Nobasksio.github.io/blob/master/bonus/promise_power.js)
 
 Чтобы подключить в свой проект просто вставьте тег
 ```
