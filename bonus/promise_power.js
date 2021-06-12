@@ -1,16 +1,4 @@
-const _wrap = (fn, cb) => {
-  setTimeout(() => {
-    cb(fn());
-  }, Math.random() * 20);
-};
 
-const makePromise = (num) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(num);
-    }, Math.random() * 2220)
-  });
-};
 
 Promise._any = function (promiseArr, waitTimeMs = 0) {
 
@@ -27,7 +15,7 @@ Promise._any = function (promiseArr, waitTimeMs = 0) {
           resolve(data);
         })
         .catch((e) => {
-          error.push(e);
+          errors.push(e);
         })
     })
 
@@ -43,18 +31,6 @@ Promise._any = function (promiseArr, waitTimeMs = 0) {
   })
 
 };
-
-let test = [
-  makePromise(1),
-  makePromise(2),
-  makePromise(3),
-  makePromise(4),
-];
-// Promise._any(test, 100).then((data) => {
-//   console.log('успех', data)
-// }).catch((e) => {
-//   console.log(e);
-// })
 
 Promise._allSettled = function (promiseArr, waitTimeMs) {
   return new Promise((resolve, reject) => {
@@ -100,18 +76,12 @@ Promise.prototype._finally = function (fn) {
     } else {
       throw 'Передана не функция'
     }
+  }).catch(() => {
+    if (fn && typeof fn === 'function'){
+      fn()
+    } else {
+      throw 'Передана не функция'
+    }
   })
 
 };
-
-let test2 = () => {};
-
-console.log('test', typeof test2);
-
-makePromise(1).then((data) => {
-  console.log('test1', data)
-})
-  ._finally(() =>{
-  console.log('я чемпион')
-  }
-)

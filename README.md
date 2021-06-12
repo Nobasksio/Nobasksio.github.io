@@ -1,3 +1,38 @@
 # Домашнее задание по асинхронности
 
-1.
+###1. Основное задание
+
+Вариант 10
+
+Реализовать операцию filter для асинхронного массива.
+
+```
+function filter(
+    array: AsyncArray,
+    fn: (cur: any, idx: Number, src: AsyncArray) => Boolean,
+    cb: (result: AsyncArray) => void) {
+}
+```
+[Смотреть на GitHub Pages реализацию](https://nobasksio.github.io/)
+
+[Исходный код](https://github.com/Nobasksio/Nobasksio.github.io/blob/master/index.js)
+
+Чтобы подключить в свой проект просто вставьте тег
+```
+<script src="https://nobasksio.github.io/async/index.js"></script>
+```
+
+###2. Бонусное задание
+
+#####Реализовать в отдельном файле собственную версию методов:
+
+[Смотреть на GitHub Pages реализацию](https://nobasksio.github.io/)
+
+[Исходный код](https://github.com/Nobasksio/Nobasksio.github.io/blob/master/promise_power.js)
+
+Чтобы подключить в свой проект просто вставьте тег
+```
+<script src="https://nobasksio.github.io/bonus/promise_power.js"></script>
+```
+
+
