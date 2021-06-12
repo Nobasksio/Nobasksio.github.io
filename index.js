@@ -1,58 +1,3 @@
-
-// todo достать из репы это апи
-
-(() => {
-
-  const _wrap = (fn, cb) => {
-    setTimeout(() => {
-      cb(fn());
-    }, Math.random() * 20);
-  };
-
-  const AsyncArray = function(initial) {
-    if (initial && !(initial instanceof Array)) {
-      throw new Error('initial value is not an array');
-    }
-
-    const a = initial ? Array.from(initial) : [];
-
-    this.set = (index, value, cb) => _wrap(() => { a[index] = value }, cb);
-    this.push = (value, cb) => _wrap(() => { a.push(value) }, cb);
-
-    this.get = (index, cb) => _wrap(() => a[index], cb);
-    this.pop = (cb) => _wrap(() => a.pop(), cb);
-    this.length = (cb) => _wrap(() => a.length, cb);
-
-    this.print = () => { console.log(a.toString()); };
-  }
-
-  const add = (a, b, cb) => _wrap(() => a + b, cb);
-  const subtract = (a, b, cb) => _wrap(() => a - b, cb);
-  const multiply = (a, b, cb) => _wrap(() => a * b, cb);
-  const divide = (a, b, cb) => _wrap(() => a / b, cb);
-  const mod = (a, b, cb) => _wrap(() => a % b, cb);
-
-  const less = (a, b, cb) => _wrap(() => a < b, cb);
-  const equal = (a, b, cb) => _wrap(() => a == b, cb);
-  const lessOrEqual = (a, b, cb) => _wrap(() => a <= b, cb);
-  const sqrt = (x, cb) => _wrap(() => Math.sqrt(x), cb);
-
-  window.Homework = {
-    AsyncArray,
-    add,
-    subtract,
-    multiply,
-    divide,
-    mod,
-    less,
-    equal,
-    lessOrEqual,
-    sqrt
-  };
-
-  Object.freeze(window.Homework);
-})();
-
 const {
   AsyncArray,
   add,
@@ -68,26 +13,36 @@ const {
 
 const a = new AsyncArray([1, 2, 3, 4, 5, 6, 7]);
 
-// function filter(
-//   array: AsyncArray,
-//   fn: (cur: any, idx: Number, src: AsyncArray) => Boolean,
-//   cb: (result: AsyncArray) => void) {
-// }
-
+/**
+ * Релазиация функции filter (10 вариант)
+ * @param arr: AsyncArray
+ * @param fn: (cur: any, idx: Number, src: AsyncArray) => Boolean
+ * @param cb: (result: AsyncArray) => void)
+ */
 async function filter(arr, fn, cb) {
 
-  // проверить массив
+  if (!(arr instanceof AsyncArray)) {
+    throw 'Переданный массив не является экземпляром класса AsyncArray';
+  }
 
-  // проверить функцию
+
+  if (!(fn instanceof Function)) {
+    throw 'Второй аргумент не является фунцией';
+  }
 
   // проверить коллбэк
+  if (!(fn instanceof Function)) {
+    throw 'Третий аргумент не является функцией';
+  }
 
   const newArray = new AsyncArray();
 
-  let test = 0;
-
   const promiseLen = new Promise((resolve, reject) => {
-    arr.length((len) => resolve(len));
+    try {
+      arr.length((len) => resolve(len));
+    } catch (e) {
+      reject(e);
+    }
   });
   promiseLen
     .then(async (len) => {
@@ -99,20 +54,25 @@ async function filter(arr, fn, cb) {
             arr.get(i, (item) => {
               resolve(item);
             });
-        }).then((item) => {
+        })
+          .then((item) => {
           return {isEqual: fn(item, i, arr), item}
-        }).then(({isEqual, item}) => {
+        })
+          .then(({isEqual, item}) => {
           if(isEqual) return newArray.push(item, () => {})
-        }).then(() => {
+        })
+          .then(() => {
           return new Promise((resolve, reject) => {
             add(i, 1, (result) => resolve(result))
           })
-        }).then((nowIndex) => {
+        })
+          .then((nowIndex) => {
           i = nowIndex;
           return new Promise((resolve) => {
             less(nowIndex, len, (isLess) => resolve(isLess))
           })
-        }).then((isLess) => {
+        })
+          .then((isLess) => {
           if (!isLess) canEnd = true;
         })
           .catch((e) => {
@@ -125,11 +85,45 @@ async function filter(arr, fn, cb) {
       }
   }).then(() => {
     cb(newArray);
+  }).catch((e) => {
+    throw `Во время выполнения вознила ошибка: ${e}`;
   })
 }
 
+/**
+ * Конец реализации
+ */
+
+
+
+
+
+
+/**
+ *  Начало вспомогательного кода. Его можно не смотреть 🙈
+-------------------------------------------------------------------------
+ */
+
+console.log(`вызываем функцию
+const a = new AsyncArray([1, 2, 3, 4, 5, 6, 7]);
+filter(a,
+  (item, idx, src) => item % 2 === 0,
+  (array) => array.length((len) => {
+    console.log(len)
+    console.log('end' , new Date);
+  })
+);
+`)
+
+const startTime = new Date;
+console.log('start Unix timestamp', startTime.getTime());
 
 filter(a,
   (item, idx, src) => item % 2 === 0,
-  (array) => array.length((len) => console.log(len))
+  (array) => array.length((len) => {
+    console.log(len)
+    const endTime = new Date;
+    console.log('end Unix timestamp', endTime.getTime());
+    console.log(`функция выполнялась ${endTime.getTime() -  startTime.getTime()} ms`);
+  })
 );
