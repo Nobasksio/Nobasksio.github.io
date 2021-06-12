@@ -11,8 +11,6 @@ const {
   sqrt
 } = Homework;
 
-const a = new AsyncArray([1, 2, 3, 4, 5, 6, 7]);
-
 /**
  * Релазиация функции filter (10 вариант)
  * @param arr: AsyncArray
@@ -25,12 +23,10 @@ async function filter(arr, fn, cb) {
     throw 'Переданный массив не является экземпляром класса AsyncArray';
   }
 
-
   if (!(fn instanceof Function)) {
     throw 'Второй аргумент не является фунцией';
   }
 
-  // проверить коллбэк
   if (!(fn instanceof Function)) {
     throw 'Третий аргумент не является функцией';
   }
@@ -104,15 +100,26 @@ async function filter(arr, fn, cb) {
 -------------------------------------------------------------------------
  */
 
+const btn = document.getElementById('refresh');
+btn.addEventListener('click', () => {
+  document.location.reload();
+})
+
+const a = new AsyncArray([1, 2, 3, 4, 5, 6, 10]);
+
 console.log(`вызываем функцию
-const a = new AsyncArray([1, 2, 3, 4, 5, 6, 7]);
+const a = new AsyncArray([1, 2, 3, 4, 5, 6, 10]);
 filter(a,
   (item, idx, src) => item % 2 === 0,
-  (array) => array.length((len) => {
-    console.log(len)
-    console.log('end' , new Date);
-  })
+  (array) => {
+      array.print()
+      const endTime = new Date;
+      console.log('end Unix timestamp', endTime.getTime());
+      console.log(функция выполнялась endTime.getTime() - startTime.getTime()} ms);
+    }
 );
+
+Чтобы подключить мой код в своем проекте просто 
 `)
 
 const startTime = new Date;
@@ -120,10 +127,10 @@ console.log('start Unix timestamp', startTime.getTime());
 
 filter(a,
   (item, idx, src) => item % 2 === 0,
-  (array) => array.length((len) => {
-    console.log(len)
-    const endTime = new Date;
-    console.log('end Unix timestamp', endTime.getTime());
-    console.log(`функция выполнялась ${endTime.getTime() -  startTime.getTime()} ms`);
-  })
+  (array) => {
+      array.print()
+      const endTime = new Date;
+      console.log('end Unix timestamp', endTime.getTime());
+      console.log(`функция выполнялась ${endTime.getTime() -  startTime.getTime()} ms`);
+    }
 );
