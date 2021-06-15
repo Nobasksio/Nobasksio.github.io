@@ -133,7 +133,6 @@
               .pipe(
                 mergeMap((value) => getApiResponse(value.target.value)),
                 filter((test) => {
-                  console.log('', prev, test, prev.length < test.length)
                   const isLonger = prev.length < test.length;
                   prev = test;
                   return isLonger;
