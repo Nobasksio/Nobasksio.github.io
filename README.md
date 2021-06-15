@@ -37,6 +37,12 @@ function filter(
 
 ### 2. Дополнительное задание rxjs
 
+Последнюю версию я залил уже после дедлайна. 
+
+Она касается правок в третьем задании. Не уверен что она архитектурно лучше, но она работает для всех случаев. 
+
+Предпоследняя версия работала начиная со второго значения(я использовал pairwise).
+
 [Смотреть на GitHub Pages реализацию](https://nobasksio.github.io/shri-rxjs-hw)
 
 [Исходный код](https://github.com/Nobasksio/Nobasksio.github.io/blob/master/shri-rxjs-hw/index.html)

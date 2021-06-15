@@ -127,17 +127,21 @@
           };
 
           const resolveRaceCondition = () => {
+
+            let prev = '';
             const subscribe2 = streamInput
               .pipe(
                 mergeMap((value) => getApiResponse(value.target.value)),
-                pairwise(),
                 filter((test) => {
-                  return test[0].length < test[1].length;
+                  console.log('', prev, test, prev.length < test.length)
+                  const isLonger = prev.length < test.length;
+                  prev = test;
+                  return isLonger;
                 }),
-                map((item) => {return [item[1]]})
               )
               .subscribe((result) => {
                 const newP = document.createElement('p');
+
                 newP.innerText = result;
                 responseCont.appendChild(newP);
               });
